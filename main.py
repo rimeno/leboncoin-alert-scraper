@@ -13,7 +13,7 @@ for url in settings.URLS :
 	tree = html.fromstring(page.content)
 	# Select all <a/> elements by class name
 	links_el = tree.xpath('//a[@class="list_item clearfix trackable"]')
-
+	link_index = 0
 	### This algorithm is based on the date of the post
 	### Also, I had to do lots of sketchy conditions to get the element I wanted
 	### maybe there's a better way to scrap this data, feel free to improve it !
@@ -40,7 +40,8 @@ for url in settings.URLS :
 					if day == "Aujourd'hui":
 						# And is not the same and newer than the last
 						if hour != last_alert_time and hour > last_alert_time:
-							link = link[0][2:-8]
+							link = link[link_index][2:-8]
+							link_index +=1
 							# Here I'm sending an email but you can do whatever you want, for exemple connect it to IFTTT maker channel, or send you a tweet
 							# Send the email
 							email_me.send_email("Alerte "+ url +" !", "Nouvelle annonce detectée à : " + time.strftime('%H:%M:%S')+".\n"+ link)
