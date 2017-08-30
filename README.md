@@ -22,3 +22,7 @@ To do so :
  * add a line like ```* * * * * /path/to/your/python/executable /home/user/path/to/the/script/main.py```
  Like this the script will be executed every minute
  * exit the crontab with ```ctrl + x``` if you use nano editor, and you're good to go !
+
+
+### Troubleshooting with Gmail
+To enable Gmail to send you email throught this app, you'll have to active the ```Less secure app``` option in your Google account has described in this [stackoverflow thread](http://stackoverflow.com/a/27515833).

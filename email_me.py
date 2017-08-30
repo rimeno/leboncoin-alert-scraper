@@ -24,11 +24,12 @@ def send_email(subject, body):
 	try:
 		server = smtplib.SMTP(mail_server, 587)
 		server.ehlo()
+		server.starttls()
 		server.ehlo()
 		server.login(fromaddr, password)
 		text = msg.as_string()
 		server.sendmail(fromaddr, toaddr, text)
 	except smtplib.socket.error:
-		print('mail error')
+		print('mail socket error')
 	except smtplib.SMTPException:
-		print('mail error')
+		print('mail smtp exception')
