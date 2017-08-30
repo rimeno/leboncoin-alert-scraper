@@ -16,6 +16,7 @@ Once requirements satisfied, the idea is to run the script on a server, using a 
 To do so :
  * ```ssh``` to your server
  * ```git clone``` this project
+ * install the requirements ```pip3 install -r requirements.txt``` (you might need ```sudo```)
  * add your settings
  * create a new cronjob ```crontab -e```
  * add a line like ```* * * * * /path/to/your/python/executable /home/user/path/to/the/script/main.py```
