@@ -41,10 +41,13 @@ for url in settings.URLS :
 						# And is not the same and newer than the last
 						if hour != last_alert_time and hour > last_alert_time:
 							link = link[link_index][2:-8]
+							page = requests.get("http://"+link, headers=headers)
+							ntree = html.fromstring(page.content)
+							title = ntree.xpath('//title/text()')
 							link_index +=1
 							# Here I'm sending an email but you can do whatever you want, for exemple connect it to IFTTT maker channel, or send you a tweet
 							# Send the email
-							email_me.send_email("Alerte "+ url +" !", "Nouvelle annonce detectée à : " + time.strftime('%H:%M:%S')+".\n"+ link)
+							email_me.send_email("Alerte "+ url +" "+ title[0] , "Nouvelle annonce detectée à : " + time.strftime('%H:%M:%S')+".\nhttp://"+ link)
 							# Save the new alert hour
 							utils.write_to_file('last_alert_'+ url +'.txt', hour)
 							print("email send, new last_alert_time : ", hour)
