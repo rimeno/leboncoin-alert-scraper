@@ -44,10 +44,14 @@ for url in settings.URLS :
 							page = requests.get("http://"+link, headers=headers)
 							ntree = html.fromstring(page.content)
 							title = ntree.xpath('//title/text()')
+							content = ntree.xpath('//p[@class="value"]/text()')
+							body = ""
+							for c in content:
+								body=body+"\n"+c
 							link_index +=1
 							# Here I'm sending an email but you can do whatever you want, for exemple connect it to IFTTT maker channel, or send you a tweet
 							# Send the email
-							email_me.send_email("Alerte "+ url +" "+ title[0] , "Nouvelle annonce detectée à : " + time.strftime('%H:%M:%S')+".\nhttp://"+ link)
+							email_me.send_email("Alerte "+ url +" "+ title[0] , "Nouvelle annonce detectée à : " + time.strftime('%H:%M:%S')+".\nhttp://"+ link +"\n"+body)
 							# Save the new alert hour
 							utils.write_to_file('last_alert_'+ url +'.txt', hour)
 							print("email send, new last_alert_time : ", hour)
