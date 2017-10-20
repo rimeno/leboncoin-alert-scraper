@@ -6,6 +6,7 @@ EMAIL_SENDER = "<email-of-the-sender>"
 EMAIL_SENDER_PSWD = "<password-of-the-sender>"
 EMAIL_RECEIVER = "<email-of-the-receiver>"
 SERVER_EMAIL_SENDER = "<mail-server-adress>" # For me host at OVH it's : ssl0.ovh.net, for Gmail : smtp.gmail.com
+SERVER_EMAIL_PORT = "587"
 
 
 # Add the name of your alert and the url of the search corresponding
