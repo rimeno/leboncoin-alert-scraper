@@ -25,9 +25,10 @@ def send_email(subject, body):
 	try:
 		server = smtplib.SMTP(mail_server, mail_server_port)
 		server.ehlo()
-		server.starttls()
-		server.ehlo()
-		server.login(fromaddr, password)
+		if password:
+			server.starttls()
+			server.ehlo()
+			server.login(fromaddr, password)
 		text = msg.as_string()
 		server.sendmail(fromaddr, toaddr, text)
 	except smtplib.socket.error:
